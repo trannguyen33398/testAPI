@@ -5,11 +5,11 @@ const passport = require('passport')
 module.exports = (function() {   
 
     router.get('/', function(req, res){
-	  res.render('index', { user: req.user });
+		res.json({ user: user });
 	});
     
     router.get('/login', function(req, res){
-	  //Return to page login
+		res.json({msg: "login failed"});
 	});
     
     router.get('/account', ensureAuthenticated, function(req, res){
