@@ -22,7 +22,7 @@ module.exports = (function() {
 	  passport.authenticate('facebook', { successRedirect : '/', failureRedirect: '/login' }),
 	  function(req, res) {
 		console.log(req.user)
-	    res.redirect('http://localhost:3006/');
+	    res.redirect('/');
 	  });
 
 	router.get('/logout', function(req, res){
