@@ -5,16 +5,15 @@ const passport = require('passport')
 module.exports = (function() {   
 
     router.get('/', function(req, res){
-		res.json({ user: user });
+	  res.json({ user: req.user });
 	});
     
     router.get('/login', function(req, res){
-		res.json({msg: "login failed"});
+	  //Return to page login
 	});
     
     router.get('/account', ensureAuthenticated, function(req, res){
 	  res.render('account', { user: req.user });
-	  console.log(req.user)
 	});
 
 	router.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
