@@ -14,6 +14,7 @@ module.exports = (function() {
     
     router.get('/account', ensureAuthenticated, function(req, res){
 	  res.render('account', { user: req.user });
+	  console.log(req.user)
 	});
 
 	router.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
