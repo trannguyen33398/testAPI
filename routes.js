@@ -8,8 +8,16 @@ module.exports = (function() {
 	  res.json({ user: req.user });
 	});
     
-    router.get('/login', function(req, res){
+    router.get('/login/success', function(req, res){
 	  //Return to page login
+	  if (req.user) {
+		res.json({
+		  success: true,
+		  message: "user has successfully authenticated",
+		  user: req.user,
+		  cookies: req.cookies
+		});
+	  }
 	});
     
     router.get('/account', ensureAuthenticated, function(req, res){
@@ -19,7 +27,7 @@ module.exports = (function() {
 	router.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
 
 	router.get('/auth/facebook/callback',
-	  passport.authenticate('facebook', { successRedirect : '/', failureRedirect: '/login' }),
+	  passport.authenticate('facebook', { successRedirect : 'http://localhost:3006', failureRedirect: '/login/failed' }),
 	  function(req, res) {
 		console.log(req.user)
 	    res.redirect('/');
@@ -29,7 +37,12 @@ module.exports = (function() {
 	  req.logout();
 	  res.redirect('/');
 	});
-
+	router.get("/login/failed", (req, res) => {
+		res.status(401).json({    
+		  success: false,
+		  message: "user failed to authenticate."
+		});
+	  });
     return router;    
 })();
 
