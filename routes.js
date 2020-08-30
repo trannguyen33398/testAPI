@@ -5,7 +5,7 @@ const passport = require('passport')
 module.exports = (function() {   
 
     router.get('/', function(req, res){
-	  res.redirect('index',{ user: req.user });
+	    res.render('index', { user: req.user });
 	});
     
     router.get('/login/success', function(req, res){
