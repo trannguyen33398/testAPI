@@ -5,7 +5,7 @@ const passport = require('passport')
 module.exports = (function() {   
 
     router.get('/', function(req, res){
-	  res.json({ user: req.user });
+	  res.redirect('index',{ user: req.user });
 	});
     
     router.get('/login/success', function(req, res){
@@ -27,7 +27,7 @@ module.exports = (function() {
 	router.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
 
 	router.get('/auth/facebook/callback',
-	  passport.authenticate('facebook', { successRedirect : 'http://localhost:3006', failureRedirect: '/login/failed' }),
+	  passport.authenticate('facebook', { successRedirect : '/', failureRedirect: '/login/failed' }),
 	  function(req, res) {
 		console.log(req.user)
 	    res.redirect('/');
