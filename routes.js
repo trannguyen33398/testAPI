@@ -10,14 +10,14 @@ module.exports = (function() {
     
     router.get('/login/success', function(req, res){
 	  //Return to page login
-	  if (req.user) {
+	 
 		res.json({
 		  success: true,
 		  message: "user has successfully authenticated",
 		  user: req.user,
 		  cookies: req.cookies
 		});
-	  }
+	  
 	});
     
     router.get('/account', ensureAuthenticated, function(req, res){
