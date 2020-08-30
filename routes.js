@@ -15,7 +15,7 @@ module.exports = (function() {
 		  success: true,
 		  message: "user has successfully authenticated",
 		  user: req.user,
-		  cookies: req.cookies
+		  token: req.token
 		});
 	  }
 	});
